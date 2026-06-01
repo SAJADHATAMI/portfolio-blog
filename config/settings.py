@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'contact',
     'core',
-    'courses'
+    'courses',
     'projects',
     'resume',
 ]
