@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
@@ -27,7 +26,7 @@ class Profile(models.Model):
 class Skill(models.Model):
     name = models.CharField(max_length=100)
     percent = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(0)])
-    priority = models.IntegerField(unique=True)
+    priority = models.IntegerField(default=0)
     def __str__(self):
         return self.name
     class Meta:
