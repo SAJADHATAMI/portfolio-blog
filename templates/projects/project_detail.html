@@ -1,0 +1,113 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} {{ project.title }} | Project Details {% endblock %}
+
+{% block content %}
+<main id="main" class="main">
+
+  <!-- ======= Page Title & Breadcrumbs ======= -->
+  <div class="page-title" data-aos="fade" style="padding: 100px 0 20px 0;">
+    <div class="container">
+      <nav class="breadcrumbs mb-2">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="{% url 'projects_list' %}">Projects Archive</a></li>
+          <li class="current">{{ project.title }}</li>
+        </ol>
+      </nav>
+      <h1>{{ project.title }}</h1>
+    </div>
+  </div><!-- End Page Title -->
+
+  <!-- ======= Portfolio Details Section ======= -->
+  <section id="portfolio-details" class="portfolio-details section">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="row gy-4">
+
+        <div class="col-lg-8">
+          <!-- Main Project Image/Gallery -->
+          <div class="portfolio-details-slider swiper init-swiper shadow-sm rounded overflow-hidden">
+            <div class="swiper-wrapper align-items-center">
+              <div class="swiper-slide">
+                {% if project.image %}
+                  <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid">
+                {% else %}
+                  <img src="{% static 'img/portfolio/app-1.jpg' %}" alt="Placeholder" class="img-fluid">
+                {% endif %}
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <!-- Description Section -->
+          <div class="portfolio-description mt-5">
+            <h2 class="fw-bold">Project Overview</h2>
+            <p style="text-align: justify; line-height: 1.8; color: #444;">
+              {{ project.description|linebreaks }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <!-- Sticky Sidebar for Project Info -->
+          <div class="portfolio-info p-4 shadow-sm rounded bg-white" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="mb-4 border-bottom pb-2">Project Information</h3>
+            <ul class="list-unstyled">
+              <li class="mb-3"><strong>Category</strong>: <span class="text-muted">{{ project.category.name }}</span></li>
+              <li class="mb-3"><strong>Project date</strong>: <span class="text-muted">{{ project.created_at|date:"d M, Y" }}</span></li>
+              <li class="mb-3"><strong>Status</strong>:
+                {% if project.status == 1 %}
+                  <span class="badge bg-warning text-dark">In Progress</span>
+                {% elif project.status == 2 %}
+                  <span class="badge bg-success">Completed</span>
+                {% else %}
+                  <span class="badge bg-secondary">Archived</span>
+                {% endif %}
+              </li>
+              <li class="mb-3">
+                <strong>Technologies</strong>:
+                <div class="mt-2">
+                  {% for skill in project.skills.all %}
+                    <span class="badge bg-light text-dark border me-1 mb-1">{{ skill.name }}</span>
+                  {% endfor %}
+                </div>
+              </li>
+              <li class="mt-4">
+                <div class="d-grid gap-2">
+                    {% if project.github_link %}
+                    <a href="{{ project.github_link }}" target="_blank" class="btn btn-dark btn-sm shadow-none">
+                        <i class="bi bi-github"></i> Source Code
+                    </a>
+                    {% endif %}
+                    {% if project.demo_link %}
+                    <a href="{{ project.demo_link }}" target="_blank" class="btn btn-primary btn-sm shadow-none">
+                        <i class="bi bi-box-arrow-up-right"></i> Live Demo
+                    </a>
+                    {% endif %}
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Short Description / Key Features -->
+          {% if project.short_description %}
+          <div class="mt-4 p-4 border-start border-4 border-primary bg-light rounded">
+            <h5 class="fw-bold">Highlights</h5>
+            <p class="small text-muted mb-0 italic">{{ project.short_description }}</p>
+          </div>
+          {% endif %}
+        </div>
+
+      </div>
+
+    </div>
+
+  </section><!-- /Portfolio Details Section -->
+
+</main>
+
+
+{% endblock %}

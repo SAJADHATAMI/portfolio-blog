@@ -1,14 +1,20 @@
 from django.db import models
 from core.models import Skill
-
+from django.utils.text import slugify
 
 
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
     created_at = models.DateField(auto_now_add=True)
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 STATUS_CHOICES = [
@@ -35,7 +41,13 @@ class Project(models.Model):
         default=0
     )
 
+
     class Meta:
         ordering = ['-created_at']
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)

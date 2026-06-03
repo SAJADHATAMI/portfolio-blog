@@ -1,0 +1,118 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} Sajad Hatami | Projects Archive {% endblock %}
+
+{% block content %}
+<main id="main" class="main">
+
+  <!-- ======= Header & Filter Bar ======= -->
+  <div class="page-title" data-aos="fade" style="padding: 100px 0 20px 0;">
+    <div class="container">
+      <nav class="breadcrumbs mb-2">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li class="current">Projects</li>
+        </ol>
+      </nav>
+
+      <!-- Horizontal Alignment: Title and Filters -->
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+        <h1 class="m-0" style="font-weight: 700; color: #050d18;">Projects Archive</h1>
+
+        <!-- Filter Controls: Clean & Borderless -->
+        <form method="get" action="" class="d-flex gap-2 justify-content-end align-items-center">
+
+          <!-- Category Filter -->
+          <div style="min-width: 140px;">
+            <select name="category" class="form-select form-select-sm border-0 bg-light shadow-none" onchange="this.form.submit()">
+              <option value="">All Categories</option>
+              {% for cat in category %}
+                <option value="{{ cat.slug }}" {% if request.GET.category == cat.slug %}selected{% endif %}>{{ cat.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Sort Filter -->
+          <div style="min-width: 130px;">
+            <select name="sort" class="form-select form-select-sm border-0 bg-light shadow-none" onchange="this.form.submit()">
+              <option value="newest" {% if request.GET.sort == 'newest' %}selected{% endif %}>Newest First</option>
+              <option value="oldest" {% if request.GET.sort == 'oldest' %}selected{% endif %}>Oldest First</option>
+              <option value="title" {% if request.GET.sort == 'title' %}selected{% endif %}>Title (A-Z)</option>
+            </select>
+          </div>
+
+          <!-- Status Filter -->
+          <div style="min-width: 130px;">
+            <select name="status" class="form-select form-select-sm border-0 bg-light shadow-none" onchange="this.form.submit()">
+              <option value="">All Statuses</option>
+              <option value="1" {% if request.GET.status == '1' %}selected{% endif %}>In Progress</option>
+              <option value="2" {% if request.GET.status == '2' %}selected{% endif %}>Completed</option>
+            </select>
+          </div>
+
+          <!-- Clear Button -->
+          {% if request.GET.category or request.GET.status or request.GET.sort %}
+          <a href="{% url 'projects_list' %}" class="btn btn-sm text-danger p-1" title="Clear Filters">
+            <i class="bi bi-x-circle-fill"></i>
+          </a>
+          {% endif %}
+        </form>
+      </div>
+      <hr class="mt-3 opacity-25">
+    </div>
+  </div>
+
+  <!-- ======= Projects Grid ======= -->
+  <section id="portfolio" class="portfolio section">
+    <div class="container">
+      <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+
+        {% for project in projects %}
+        <div class="col-lg-4 col-md-6">
+          <div class="portfolio-card h-100 border rounded overflow-hidden shadow-sm bg-white">
+            {% if project.image %}
+              <img src="{{ project.image.url }}" class="img-fluid" alt="{{ project.title }}" style="width: 100%; height: 220px; object-fit: cover;">
+            {% else %}
+              <img src="{% static 'img/portfolio/app-1.jpg' %}" class="img-fluid" alt="Default Image">
+            {% endif %}
+
+            <div class="p-3">
+              <h4 class="mb-1"><a href="{% url 'project_detail' project.slug %}" class="text-dark fw-bold" style="text-decoration: none;">{{ project.title }}</a></h4>
+              <p class="text-muted small mb-3">{{ project.category.name }}</p>
+
+              <div class="mb-3">
+                {% for skill in project.skills.all %}
+                  <span class="badge bg-light text-secondary border-0" style="font-size: 11px; font-weight: 500;">{{ skill.name }}</span>
+                {% endfor %}
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+                <div class="links">
+                  {% if project.github_link %}
+                  <a href="{{ project.github_link }}" target="_blank" class="me-2 text-dark" title="Github"><i class="bi bi-github fs-5"></i></a>
+                  {% endif %}
+                  {% if project.demo_link %}
+                  <a href="{{ project.demo_link }}" target="_blank" class="text-dark" title="Live Demo"><i class="bi bi-box-arrow-up-right fs-5"></i></a>
+                  {% endif %}
+                </div>
+                <a href="{% url 'project_detail' project.slug %}" class="btn btn-sm btn-link text-primary text-decoration-none p-0">View Details <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <i class="bi bi-search fs-1 text-muted opacity-50"></i>
+            <p class="mt-3 text-muted">No projects match your search criteria.</p>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+{% endblock %}
