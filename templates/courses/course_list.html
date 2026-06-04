@@ -1,0 +1,227 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %} My Courses & Certifications {% endblock %}
+
+{% block content %}
+<style>
+    .courses-container {
+        margin-left: 300px;
+        padding: 60px 40px;
+        direction: ltr;
+        text-align: left;
+        background-color: #fff;
+    }
+
+    @media (max-width: 1199px) {
+        .courses-container {
+            margin-left: 0;
+        }
+    }
+
+    .archive-header {
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 15px;
+        margin-bottom: 40px;
+    }
+
+    .breadcrumb-custom {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+
+    .breadcrumb-custom a {
+        color: #0563bb;
+        text-decoration: none;
+    }
+
+    .archive-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #212529;
+        margin: 0;
+    }
+
+    /* Filters Style */
+    .filter-select-group .btn-dropdown {
+        background: transparent;
+        border: none;
+        color: #495057;
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+
+    .filter-select-group .dropdown-menu {
+        font-size: 0.85rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e9ecef;
+    }
+
+    /* Course Card Style */
+    .course-card {
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .course-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .course-card img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .course-card-body {
+        padding: 20px;
+        flex-grow: 1;
+    }
+
+    .course-meta-top {
+        font-size: 0.8rem;
+        color: #6c757d;
+        margin-bottom: 8px;
+    }
+
+    .course-card-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 10px;
+    }
+
+    .course-badge {
+        background-color: #eef2f7;
+        color: #0563bb;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    .course-card-footer {
+        padding: 15px 20px;
+        background: transparent;
+        border-top: 1px solid #f8f9fa;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-course-details {
+        color: #0563bb;
+        font-size: 0.85rem;
+        text-decoration: none;
+        font-weight: 500;
+    }
+</style>
+
+<main class="courses-container">
+    <div class="container-fluid p-0">
+
+        <div class="archive-header d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
+            <div>
+                <div class="breadcrumb-custom">
+                    <a href="/">Home</a> / <span>Courses</span>
+                </div>
+                <h1 class="archive-title">Courses & Learning Path</h1>
+            </div>
+
+            <div class="d-flex gap-1 flex-wrap filter-select-group">
+
+                <div class="dropdown">
+                    <button class="btn btn-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Skills
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="?">All Skills</a></li>
+                        {% for sk in skills %}
+                        <li><a class="dropdown-item" href="?skill={{ sk.slug }}">{{ sk.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Instructors
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="?">All Instructors</a></li>
+                        {% for c in coachs %}
+                        <li><a class="dropdown-item" href="?coach={{ c.slug }}">{{ c.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Platforms
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="?">All Platforms</a></li>
+                        {% for s in sources %}
+                        <li><a class="dropdown-item" href="?source={{ s.slug }}">{{ s.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Sort
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="?sort=newest">Newest</a></li>
+                        <li><a class="dropdown-item" href="?sort=oldest">Oldest</a></li>
+                        <li><a class="dropdown-item" href="?sort=title">Alphabetical</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="course-card">
+                    {% if course.cover_image %}
+                    <img src="{{ course.cover_image.url }}" alt="{{ course.title }}">
+                    {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px; color: #adb5bd;">No Cover</div>
+                    {% endif %}
+
+                    <div class="course-card-body">
+                        <div class="course-meta-top d-flex justify-content-between">
+                            <span><i class="bi bi-person"></i> {{ course.coach.name }}</span>
+                            <span><i class="bi bi-laptop"></i> {{ course.source.name }}</span>
+                        </div>
+                        <h2 class="course-card-title">{{ course.title }}</h2>
+                        {% if course.skill %}
+                        <span class="course-badge">#{{ course.skill.name }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="course-card-footer">
+                        <span class="text-muted small"><i class="bi bi-calendar"></i> {{ course.start_date|date:"Y"|default:"N/A" }}</span>
+                        <a href="{% url 'course_detail' course.slug %}" class="btn-course-details">View Details &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-5">No courses found matching the criteria.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</main>
+{% endblock %}

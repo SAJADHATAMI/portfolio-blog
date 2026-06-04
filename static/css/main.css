@@ -1322,7 +1322,1174 @@ section,
 }
 
 
-/*لیست بلاگ ها*/
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================
+   Modern Soft UI Cards - 2025 Edition
+   Clean, Minimal, Modern Design
+   ============================================ */
+
+/* ============================================
+   Modern Horizontal Cards – Unique per Module
+   ============================================ */
+/* ============================================
+   Modern Horizontal Cards CSS - Fixed Version
+   ============================================ */
+
+/* ============================================
+   iPortfolio Override - Sections Cards
+   ============================================ */
+
+/* ----- CSS Variables ----- */
+/* ============================================
+   iPortfolio Override - Sections Cards
+   ============================================ */
+
+/* ----- CSS Variables ----- */
+/*:root {*/
+/*  --primary: #149ddd;*/
+/*  --primary-hover: #0d7db3;*/
+/*  --primary-light: #e8f6fc;*/
+/*  --dark: #173b6c;*/
+/*  --text: #4a5568;*/
+/*  --text-light: #718096;*/
+/*  --bg: #f8fafc;*/
+/*  --white: #ffffff;*/
+/*  --border: #e2e8f0;*/
+/*  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);*/
+/*  --shadow-hover: 0 10px 25px rgba(0,0,0,0.1);*/
+/*  --radius: 16px;*/
+/*  --radius-full: 50px;*/
+/*  --transition: 0.3s ease;*/
+/*}*/
+
+/*!* ----- RESET iPortfolio container constraints ----- *!*/
+/*.portfolio-section .container,*/
+/*.blog-section .container,*/
+/*.courses-section .container {*/
+/*  max-width: 100% !important;*/
+/*  padding: 0 24px !important;*/
+/*}*/
+
+/*@media (min-width: 1200px) {*/
+/*  .portfolio-section .container,*/
+/*  .blog-section .container,*/
+/*  .courses-section .container {*/
+/*    max-width: 100% !important;*/
+/*  }*/
+/*}*/
+
+/*!* ----- Section Spacing ----- *!*/
+/*.portfolio-section,*/
+/*.blog-section,*/
+/*.courses-section {*/
+/*  padding: 60px 0 !important;*/
+/*  overflow: hidden !important;*/
+/*}*/
+
+/*!* ----- Section Header ----- *!*/
+/*.section-header {*/
+/*  display: flex !important;*/
+/*  justify-content: space-between !important;*/
+/*  align-items: flex-end !important;*/
+/*  margin-bottom: 30px !important;*/
+/*  gap: 20px !important;*/
+/*  flex-wrap: wrap !important;*/
+/*}*/
+
+/*.header-content .section-title {*/
+/*  font-size: 28px !important;*/
+/*  font-weight: 700 !important;*/
+/*  color: var(--dark) !important;*/
+/*  margin: 0 0 4px 0 !important;*/
+/*  padding: 0 !important;*/
+/*  position: relative !important;*/
+/*  display: inline-block !important;*/
+/*}*/
+
+/*.header-content .section-title::after {*/
+/*  content: '' !important;*/
+/*  position: absolute !important;*/
+/*  bottom: -6px !important;*/
+/*  left: 0 !important;*/
+/*  width: 40px !important;*/
+/*  height: 3px !important;*/
+/*  background: var(--primary) !important;*/
+/*  border-radius: 2px !important;*/
+/*  display: block !important;*/
+/*}*/
+
+/*.header-content .section-subtitle {*/
+/*  color: var(--text-light) !important;*/
+/*  margin: 8px 0 0 0 !important;*/
+/*  font-size: 15px !important;*/
+/*  padding: 0 !important;*/
+/*}*/
+
+/*!* View All Button *!*/
+/*.view-all-btn {*/
+/*  background: var(--white) !important;*/
+/*  border: 1.5px solid var(--border) !important;*/
+/*  color: var(--primary) !important;*/
+/*  padding: 10px 22px !important;*/
+/*  border-radius: var(--radius-full) !important;*/
+/*  font-weight: 600 !important;*/
+/*  font-size: 14px !important;*/
+/*  display: inline-flex !important;*/
+/*  align-items: center !important;*/
+/*  gap: 6px !important;*/
+/*  transition: all var(--transition) !important;*/
+/*  text-decoration: none !important;*/
+/*  white-space: nowrap !important;*/
+/*  flex-shrink: 0 !important;*/
+/*  height: auto !important;*/
+/*  line-height: 1.5 !important;*/
+/*}*/
+
+/*.view-all-btn:hover {*/
+/*  background: var(--primary) !important;*/
+/*  color: #fff !important;*/
+/*  border-color: var(--primary) !important;*/
+/*}*/
+
+/*!* ----- Horizontal Scroll Row ----- *!*/
+/*.cards-row {*/
+/*  display: flex !important;*/
+/*  flex-wrap: nowrap !important;*/
+/*  gap: 20px !important;*/
+/*  overflow-x: auto !important;*/
+/*  padding-bottom: 20px !important;*/
+/*  scroll-snap-type: x mandatory !important;*/
+/*  -webkit-overflow-scrolling: touch !important;*/
+/*  scrollbar-width: thin !important;*/
+/*  scrollbar-color: #cbd5e0 #f1f5f9 !important;*/
+/*}*/
+
+/*.cards-row::-webkit-scrollbar {*/
+/*  height: 6px !important;*/
+/*}*/
+
+/*.cards-row::-webkit-scrollbar-track {*/
+/*  background: #f1f5f9 !important;*/
+/*  border-radius: 10px !important;*/
+/*}*/
+
+/*.cards-row::-webkit-scrollbar-thumb {*/
+/*  background: #cbd5e0 !important;*/
+/*  border-radius: 10px !important;*/
+/*}*/
+
+/*!* ===== COMMON CARD STYLES ===== *!*/
+/*.project-card,*/
+/*.blog-card,*/
+/*.course-card {*/
+/*  flex: 0 0 300px !important;*/
+/*  width: 300px !important;*/
+/*  min-width: 300px !important;*/
+/*  max-width: 300px !important;*/
+/*  scroll-snap-align: start !important;*/
+/*  border-radius: var(--radius) !important;*/
+/*  background: var(--white) !important;*/
+/*  box-shadow: var(--shadow) !important;*/
+/*  border: 1px solid var(--border) !important;*/
+/*  transition: all var(--transition) !important;*/
+/*  overflow: hidden !important;*/
+/*  display: flex !important;*/
+/*  flex-direction: column !important;*/
+/*  height: auto !important;*/
+/*  margin: 0 !important;*/
+/*  padding: 0 !important;*/
+/*  box-sizing: border-box !important;*/
+/*  !* Kill iPortfolio styles *!*/
+/*  position: relative !important;*/
+/*  top: auto !important;*/
+/*  left: auto !important;*/
+/*  right: auto !important;*/
+/*  bottom: auto !important;*/
+/*  transform: none !important;*/
+/*  opacity: 1 !important;*/
+/*  visibility: visible !important;*/
+/*  float: none !important;*/
+/*  clear: none !important;*/
+/*}*/
+
+/*.project-card:hover,*/
+/*.blog-card:hover,*/
+/*.course-card:hover {*/
+/*  transform: translateY(-6px) !important;*/
+/*  box-shadow: var(--shadow-hover) !important;*/
+/*  border-color: var(--primary) !important;*/
+/*}*/
+
+/*!* ===== CARD IMAGE ===== *!*/
+/*.card-img {*/
+/*  position: relative !important;*/
+/*  height: 180px !important;*/
+/*  width: 100% !important;*/
+/*  overflow: hidden !important;*/
+/*  background: #e2e8f0 !important;*/
+/*  flex-shrink: 0 !important;*/
+/*  margin: 0 !important;*/
+/*  padding: 0 !important;*/
+/*  border: none !important;*/
+/*  border-radius: 0 !important;*/
+/*}*/
+
+/*.card-img img {*/
+/*  width: 100% !important;*/
+/*  height: 100% !important;*/
+/*  object-fit: cover !important;*/
+/*  display: block !important;*/
+/*  transition: transform 0.5s ease !important;*/
+/*  margin: 0 !important;*/
+/*  padding: 0 !important;*/
+/*  border: none !important;*/
+/*  border-radius: 0 !important;*/
+/*}*/
+
+/*.project-card:hover .card-img img,*/
+/*.blog-card:hover .card-img img,*/
+/*.course-card:hover .card-img img {*/
+/*  transform: scale(1.05) !important;*/
+/*}*/
+
+/*.card-img-overlay {*/
+/*  position: absolute !important;*/
+/*  top: 10px !important;*/
+/*  left: 10px !important;*/
+/*  z-index: 2 !important;*/
+/*}*/
+
+/*!* ===== CARD BODY ===== *!*/
+/*.project-card .card-body,*/
+/*.blog-card .card-body,*/
+/*.course-card .card-body {*/
+/*  padding: 16px !important;*/
+/*  display: flex !important;*/
+/*  flex-direction: column !important;*/
+/*  flex: 1 1 auto !important;*/
+/*  gap: 0 !important;*/
+/*  margin: 0 !important;*/
+/*  border: none !important;*/
+/*  background: #fff !important;*/
+/*}*/
+
+/*!* ===== CARD TITLE ===== *!*/
+/*.project-card .card-title,*/
+/*.blog-card .card-title,*/
+/*.course-card .card-title {*/
+/*  font-size: 16px !important;*/
+/*  font-weight: 650 !important;*/
+/*  color: var(--dark) !important;*/
+/*  line-height: 1.4 !important;*/
+/*  margin: 0 0 8px 0 !important;*/
+/*  padding: 0 !important;*/
+/*  display: -webkit-box !important;*/
+/*  -webkit-line-clamp: 2 !important;*/
+/*  -webkit-box-orient: vertical !important;*/
+/*  overflow: hidden !important;*/
+/*  transition: color var(--transition) !important;*/
+/*  text-decoration: none !important;*/
+/*  border: none !important;*/
+/*}*/
+
+/*.project-card:hover .card-title,*/
+/*.blog-card:hover .card-title,*/
+/*.course-card:hover .card-title {*/
+/*  color: var(--primary) !important;*/
+/*}*/
+
+/*!* ===== CARD TEXT ===== *!*/
+/*.project-card .card-text,*/
+/*.blog-card .card-text,*/
+/*.course-card .card-text {*/
+/*  font-size: 13px !important;*/
+/*  color: var(--text) !important;*/
+/*  line-height: 1.5 !important;*/
+/*  margin: 0 0 12px 0 !important;*/
+/*  padding: 0 !important;*/
+/*  flex: 1 1 auto !important;*/
+/*  display: -webkit-box !important;*/
+/*  -webkit-line-clamp: 3 !important;*/
+/*  -webkit-box-orient: vertical !important;*/
+/*  overflow: hidden !important;*/
+/*}*/
+
+/*!* ===== TAGS ===== *!*/
+/*.skill-tags {*/
+/*  display: flex !important;*/
+/*  flex-wrap: wrap !important;*/
+/*  gap: 5px !important;*/
+/*  margin: 0 0 12px 0 !important;*/
+/*  min-height: 26px !important;*/
+/*  padding: 0 !important;*/
+/*}*/
+
+/*.tag {*/
+/*  display: inline-flex !important;*/
+/*  align-items: center !important;*/
+/*  background: var(--primary-light) !important;*/
+/*  color: var(--primary) !important;*/
+/*  padding: 3px 10px !important;*/
+/*  border-radius: 15px !important;*/
+/*  font-size: 11px !important;*/
+/*  font-weight: 550 !important;*/
+/*  line-height: 1.5 !important;*/
+/*  white-space: nowrap !important;*/
+/*  margin: 0 !important;*/
+/*  border: none !important;*/
+/*  transition: all var(--transition) !important;*/
+/*}*/
+
+/*.tag:hover {*/
+/*  background: var(--primary) !important;*/
+/*  color: #fff !important;*/
+/*}*/
+
+/*!* ===== CARD ACTIONS ===== *!*/
+/*.project-card .card-actions,*/
+/*.course-card .card-actions {*/
+/*  display: flex !important;*/
+/*  align-items: center !important;*/
+/*  gap: 8px !important;*/
+/*  margin-top: auto !important;*/
+/*  padding: 0 !important;*/
+/*  border: none !important;*/
+/*}*/
+
+/*.project-card .card-actions {*/
+/*  justify-content: space-between !important;*/
+/*}*/
+
+/*.course-card .card-actions {*/
+/*  justify-content: flex-start !important;*/
+/*}*/
+
+/*.external-links {*/
+/*  display: flex !important;*/
+/*  gap: 6px !important;*/
+/*  margin: 0 !important;*/
+/*  padding: 0 !important;*/
+/*}*/
+
+/*!* ===== ICON LINKS ===== *!*/
+/*.icon-link {*/
+/*  width: 32px !important;*/
+/*  height: 32px !important;*/
+/*  border-radius: 50% !important;*/
+/*  background: #f1f5f9 !important;*/
+/*  color: var(--dark) !important;*/
+/*  display: flex !important;*/
+/*  align-items: center !important;*/
+/*  justify-content: center !important;*/
+/*  font-size: 15px !important;*/
+/*  transition: all var(--transition) !important;*/
+/*  text-decoration: none !important;*/
+/*  flex-shrink: 0 !important;*/
+/*  margin: 0 !important;*/
+/*  padding: 0 !important;*/
+/*  border: none !important;*/
+/*}*/
+
+/*.icon-link:hover {*/
+/*  background: var(--dark) !important;*/
+/*  color: #fff !important;*/
+/*}*/
+
+/*!* ===== DETAIL BUTTON ===== *!*/
+/*.detail-btn {*/
+/*  background: var(--primary) !important;*/
+/*  color: #fff !important;*/
+/*  border: none !important;*/
+/*  padding: 7px 16px !important;*/
+/*  border-radius: var(--radius-full) !important;*/
+/*  font-weight: 550 !important;*/
+/*  font-size: 13px !important;*/
+/*  text-decoration: none !important;*/
+/*  display: inline-flex !important;*/
+/*  align-items: center !important;*/
+/*  justify-content: center !important;*/
+/*  gap: 4px !important;*/
+/*  transition: all var(--transition) !important;*/
+/*  white-space: nowrap !important;*/
+/*  flex-shrink: 0 !important;*/
+/*  margin: 0 !important;*/
+/*  line-height: 1.5 !important;*/
+/*  cursor: pointer !important;*/
+/*}*/
+
+/*.detail-btn:hover {*/
+/*  background: var(--primary-hover) !important;*/
+/*  color: #fff !important;*/
+/*  transform: translateY(-2px) !important;*/
+/*  box-shadow: 0 4px 12px rgba(20,157,221,0.3) !important;*/
+/*  text-decoration: none !important;*/
+/*}*/
+
+/*!* ===== PROJECT CARD SPECIFIC ===== *!*/
+/*.project-card .category-badge {*/
+/*  background: rgba(23, 59, 108, 0.8) !important;*/
+/*  backdrop-filter: blur(4px) !important;*/
+/*  -webkit-backdrop-filter: blur(4px) !important;*/
+/*  color: #fff !important;*/
+/*  padding: 4px 12px !important;*/
+/*  border-radius: 20px !important;*/
+/*  font-size: 11px !important;*/
+/*  font-weight: 600 !important;*/
+/*  letter-spacing: 0.3px !important;*/
+/*  display: inline-block !important;*/
+/*  margin: 0 !important;*/
+/*  border: none !important;*/
+/*}*/
+
+/*!* ===== BLOG CARD SPECIFIC ===== *!*/
+/*.blog-card .date-badge {*/
+/*  background: #fff !important;*/
+/*  color: var(--dark) !important;*/
+/*  padding: 4px 12px !important;*/
+/*  border-radius: 20px !important;*/
+/*  font-size: 11px !important;*/
+/*  font-weight: 600 !important;*/
+/*  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;*/
+/*  display: inline-block !important;*/
+/*  margin: 0 !important;*/
+/*  border: none !important;*/
+/*}*/
+
+/*.blog-card .meta {*/
+/*  display: flex !important;*/
+/*  flex-wrap: wrap !important;*/
+/*  gap: 12px !important;*/
+/*  font-size: 11px !important;*/
+/*  color: var(--text-light) !important;*/
+/*  margin: 0 0 8px 0 !important;*/
+/*  min-height: 18px !important;*/
+/*  padding: 0 !important;*/
+/*}*/
+
+/*.blog-card .meta span {*/
+/*  display: inline-flex !important;*/
+/*  align-items: center !important;*/
+/*  gap: 4px !important;*/
+/*}*/
+
+/*.blog-card .meta i {*/
+/*  color: var(--primary) !important;*/
+/*  font-size: 13px !important;*/
+/*}*/
+
+/*.blog-card .detail-btn {*/
+/*  align-self: flex-start !important;*/
+/*  margin-top: auto !important;*/
+/*}*/
+
+/*!* ===== COURSE CARD SPECIFIC ===== *!*/
+/*.course-card .cert-badge {*/
+/*  position: absolute !important;*/
+/*  top: 10px !important;*/
+/*  right: 10px !important;*/
+/*  background: #10b981 !important;*/
+/*  color: #fff !important;*/
+/*  width: 30px !important;*/
+/*  height: 30px !important;*/
+/*  border-radius: 50% !important;*/
+/*  display: flex !important;*/
+/*  align-items: center !important;*/
+/*  justify-content: center !important;*/
+/*  font-size: 14px !important;*/
+/*  box-shadow: 0 3px 10px rgba(16,185,129,0.4) !important;*/
+/*  z-index: 3 !important;*/
+/*  text-decoration: none !important;*/
+/*  margin: 0 !important;*/
+/*  padding: 0 !important;*/
+/*  border: none !important;*/
+/*}*/
+
+/*.course-card .instructor {*/
+/*  display: flex !important;*/
+/*  flex-wrap: wrap !important;*/
+/*  gap: 12px !important;*/
+/*  font-size: 12px !important;*/
+/*  color: var(--text) !important;*/
+/*  margin: 0 0 8px 0 !important;*/
+/*  min-height: 18px !important;*/
+/*  padding: 0 !important;*/
+/*}*/
+
+/*.course-card .instructor span {*/
+/*  display: inline-flex !important;*/
+/*  align-items: center !important;*/
+/*  gap: 4px !important;*/
+/*}*/
+
+/*.course-card .instructor i {*/
+/*  color: var(--primary) !important;*/
+/*  font-size: 13px !important;*/
+/*}*/
+
+/*.course-card .main-skill {*/
+/*  display: inline-flex !important;*/
+/*  align-items: center !important;*/
+/*  gap: 4px !important;*/
+/*  margin: 0 0 10px 0 !important;*/
+/*  background: #e0e7ff !important;*/
+/*  padding: 3px 10px !important;*/
+/*  border-radius: 15px !important;*/
+/*  font-size: 11px !important;*/
+/*  font-weight: 550 !important;*/
+/*  width: fit-content !important;*/
+/*}*/
+
+/*.course-meta {*/
+/*  font-size: 12px !important;*/
+/*  color: var(--text-light) !important;*/
+/*  margin: 0 0 12px 0 !important;*/
+/*  display: flex !important;*/
+/*  align-items: center !important;*/
+/*  gap: 5px !important;*/
+/*  min-height: 18px !important;*/
+/*  padding: 0 !important;*/
+/*}*/
+
+/*.course-meta i {*/
+/*  color: var(--primary) !important;*/
+/*  font-size: 13px !important;*/
+/*}*/
+
+/*.course-card .card-actions .detail-btn {*/
+/*  flex: 1 !important;*/
+/*  text-align: center !important;*/
+/*}*/
+
+/*!* ===== EMPTY STATE ===== *!*/
+/*.empty-state {*/
+/*  color: var(--text-light) !important;*/
+/*  font-size: 15px !important;*/
+/*  padding: 30px 10px !important;*/
+/*  white-space: nowrap !important;*/
+/*  display: flex !important;*/
+/*  align-items: center !important;*/
+/*  min-width: 200px !important;*/
+/*}*/
+
+/*!* ===== RESPONSIVE ===== *!*/
+/*@media (max-width: 768px) {*/
+/*  .section-header {*/
+/*    flex-direction: column !important;*/
+/*    align-items: flex-start !important;*/
+/*    gap: 12px !important;*/
+/*  }*/
+
+/*  .cards-row {*/
+/*    gap: 14px !important;*/
+/*  }*/
+
+/*  .project-card,*/
+/*  .blog-card,*/
+/*  .course-card {*/
+/*    flex: 0 0 270px !important;*/
+/*    width: 270px !important;*/
+/*    min-width: 270px !important;*/
+/*    max-width: 270px !important;*/
+/*  }*/
+
+/*  .card-img {*/
+/*    height: 160px !important;*/
+/*  }*/
+/*}*/
+
+/*@media (max-width: 480px) {*/
+/*  .project-card,*/
+/*  .blog-card,*/
+/*  .course-card {*/
+/*    flex: 0 0 250px !important;*/
+/*    width: 250px !important;*/
+/*    min-width: 250px !important;*/
+/*    max-width: 250px !important;*/
+/*  }*/
+
+/*  .card-img {*/
+/*    height: 150px !important;*/
+/*  }*/
+/*}*/
+
+/* ============================================
+   iPortfolio Override - Sections Cards (Grid 3 Columns)
+   ============================================ */
+
+/* ----- CSS Variables ----- */
+:root {
+  --primary: #149ddd;
+  --primary-hover: #0d7db3;
+  --primary-light: #e8f6fc;
+  --dark: #173b6c;
+  --text: #4a5568;
+  --text-light: #718096;
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --border: #e2e8f0;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-hover: 0 10px 25px rgba(0,0,0,0.1);
+  --radius: 16px;
+  --radius-full: 50px;
+  --transition: 0.3s ease;
+}
+
+/* ----- RESET iPortfolio container constraints ----- */
+.portfolio-section .container,
+.blog-section .container,
+.courses-section .container {
+  max-width: 100% !important;
+  padding: 0 24px !important;
+}
+
+@media (min-width: 1200px) {
+  .portfolio-section .container,
+  .blog-section .container,
+  .courses-section .container {
+    max-width: 1140px !important;
+    padding: 0 15px !important;
+  }
+}
+
+/* ----- Section Spacing ----- */
+.portfolio-section,
+.blog-section,
+.courses-section {
+  padding: 60px 0 !important;
+  overflow: visible !important;
+}
+
+/* ----- Section Header ----- */
+.section-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  margin-bottom: 30px !important;
+  gap: 20px !important;
+  flex-wrap: wrap !important;
+}
+
+.header-content .section-title {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  color: var(--dark) !important;
+  margin: 0 0 4px 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  display: inline-block !important;
+}
+
+.header-content .section-title::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -6px !important;
+  left: 0 !important;
+  width: 40px !important;
+  height: 3px !important;
+  background: var(--primary) !important;
+  border-radius: 2px !important;
+  display: block !important;
+}
+
+.header-content .section-subtitle {
+  color: var(--text-light) !important;
+  margin: 8px 0 0 0 !important;
+  font-size: 15px !important;
+  padding: 0 !important;
+}
+
+/* View All Button */
+.view-all-btn {
+  background: var(--white) !important;
+  border: 1.5px solid var(--border) !important;
+  color: var(--primary) !important;
+  padding: 10px 22px !important;
+  border-radius: var(--radius-full) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all var(--transition) !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  height: auto !important;
+  line-height: 1.5 !important;
+}
+
+.view-all-btn:hover {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+
+/* ===== GRID ROW (3 Columns) ===== */
+.cards-row {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+/* ===== COMMON CARD STYLES ===== */
+.project-card,
+.blog-card,
+.course-card {
+  width: 100% !important;
+  border-radius: var(--radius) !important;
+  background: var(--white) !important;
+  box-shadow: var(--shadow) !important;
+  border: 1px solid var(--border) !important;
+  transition: all var(--transition) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  float: none !important;
+  clear: none !important;
+}
+
+.project-card:hover,
+.blog-card:hover,
+.course-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--primary) !important;
+}
+
+/* ===== CARD IMAGE ===== */
+.card-img {
+  position: relative !important;
+  height: 200px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  background: #e2e8f0 !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.card-img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.5s ease !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.project-card:hover .card-img img,
+.blog-card:hover .card-img img,
+.course-card:hover .card-img img {
+  transform: scale(1.05) !important;
+}
+
+.card-img-overlay {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  z-index: 2 !important;
+}
+
+/* ===== CARD BODY ===== */
+.project-card .card-body,
+.blog-card .card-body,
+.course-card .card-body {
+  padding: 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: #fff !important;
+}
+
+/* ===== CARD TITLE ===== */
+.project-card .card-title,
+.blog-card .card-title,
+.course-card .card-title {
+  font-size: 17px !important;
+  font-weight: 650 !important;
+  color: var(--dark) !important;
+  line-height: 1.4 !important;
+  margin: 0 0 8px 0 !important;
+  padding: 0 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  transition: color var(--transition) !important;
+  text-decoration: none !important;
+  border: none !important;
+}
+
+.project-card:hover .card-title,
+.blog-card:hover .card-title,
+.course-card:hover .card-title {
+  color: var(--primary) !important;
+}
+
+/* ===== CARD TEXT ===== */
+.project-card .card-text,
+.blog-card .card-text,
+.course-card .card-text {
+  font-size: 14px !important;
+  color: var(--text) !important;
+  line-height: 1.55 !important;
+  margin: 0 0 14px 0 !important;
+  padding: 0 !important;
+  flex: 1 1 auto !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+/* ===== TAGS ===== */
+.skill-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin: 0 0 14px 0 !important;
+  min-height: 28px !important;
+  padding: 0 !important;
+}
+
+.tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: var(--primary-light) !important;
+  color: var(--primary) !important;
+  padding: 4px 12px !important;
+  border-radius: 15px !important;
+  font-size: 12px !important;
+  font-weight: 550 !important;
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  border: none !important;
+  transition: all var(--transition) !important;
+}
+
+.tag:hover {
+  background: var(--primary) !important;
+  color: #fff !important;
+}
+
+/* ===== CARD ACTIONS ===== */
+.project-card .card-actions,
+.course-card .card-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-top: auto !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.project-card .card-actions {
+  justify-content: space-between !important;
+}
+
+.course-card .card-actions {
+  justify-content: flex-start !important;
+}
+
+.external-links {
+  display: flex !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ===== ICON LINKS ===== */
+.icon-link {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  background: #f1f5f9 !important;
+  color: var(--dark) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  transition: all var(--transition) !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.icon-link:hover {
+  background: var(--dark) !important;
+  color: #fff !important;
+}
+
+/* ===== DETAIL BUTTON ===== */
+.detail-btn {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 8px 18px !important;
+  border-radius: var(--radius-full) !important;
+  font-weight: 550 !important;
+  font-size: 13px !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  transition: all var(--transition) !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+  cursor: pointer !important;
+}
+
+.detail-btn:hover {
+  background: var(--primary-hover) !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(20,157,221,0.3) !important;
+  text-decoration: none !important;
+}
+
+/* ===== PROJECT CARD SPECIFIC ===== */
+.project-card .category-badge {
+  background: rgba(23, 59, 108, 0.8) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  color: #fff !important;
+  padding: 5px 14px !important;
+  border-radius: 20px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px !important;
+  display: inline-block !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* ===== BLOG CARD SPECIFIC ===== */
+.blog-card .date-badge {
+  background: #fff !important;
+  color: var(--dark) !important;
+  padding: 5px 14px !important;
+  border-radius: 20px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  display: inline-block !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+.blog-card .meta {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 14px !important;
+  font-size: 12px !important;
+  color: var(--text-light) !important;
+  margin: 0 0 10px 0 !important;
+  min-height: 20px !important;
+  padding: 0 !important;
+}
+
+.blog-card .meta span {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+.blog-card .meta i {
+  color: var(--primary) !important;
+  font-size: 14px !important;
+}
+
+.blog-card .detail-btn {
+  align-self: flex-start !important;
+  margin-top: auto !important;
+}
+
+/* ===== COURSE CARD SPECIFIC ===== */
+.course-card .cert-badge {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  background: #10b981 !important;
+  color: #fff !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 15px !important;
+  box-shadow: 0 3px 10px rgba(16,185,129,0.4) !important;
+  z-index: 3 !important;
+  text-decoration: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  transition: all var(--transition) !important;
+}
+
+.course-card .cert-badge:hover {
+  transform: scale(1.1) !important;
+}
+
+.course-card .instructor {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 14px !important;
+  font-size: 13px !important;
+  color: var(--text) !important;
+  margin: 0 0 10px 0 !important;
+  min-height: 20px !important;
+  padding: 0 !important;
+}
+
+.course-card .instructor span {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+.course-card .instructor i {
+  color: var(--primary) !important;
+  font-size: 14px !important;
+}
+
+.course-card .main-skill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin: 0 0 12px 0 !important;
+  background: #e0e7ff !important;
+  padding: 4px 12px !important;
+  border-radius: 15px !important;
+  font-size: 12px !important;
+  font-weight: 550 !important;
+  width: fit-content !important;
+}
+
+.course-meta {
+  font-size: 13px !important;
+  color: var(--text-light) !important;
+  margin: 0 0 14px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  min-height: 20px !important;
+  padding: 0 !important;
+}
+
+.course-meta i {
+  color: var(--primary) !important;
+  font-size: 14px !important;
+}
+
+.course-card .card-actions .detail-btn {
+  flex: 1 !important;
+  text-align: center !important;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  color: var(--text-light) !important;
+  font-size: 15px !important;
+  padding: 30px 10px !important;
+  grid-column: 1 / -1 !important;
+  text-align: center !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .cards-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .cards-row {
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .cards-row {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .card-img {
+    height: 180px !important;
+  }
+}

@@ -11,7 +11,7 @@ from projects.models import Project, Category
 
 
 def projects_list(request):
-    projects = Project.objects.exclude(status=0)
+    projects = Project.objects.exclude(status=0).select_related('category').prefetch_related('skills')
     categories = Category.objects.all()
     category = request.GET.get('category')
     sort = request.GET.get('sort')

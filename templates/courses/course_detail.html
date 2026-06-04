@@ -1,0 +1,116 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %} {{ course.title }} {% endblock %}
+
+{% block content %}
+<style>
+    .course-detail-container {
+        margin-left: 300px;
+        padding: 60px 40px;
+        direction: ltr;
+        text-align: left;
+        background-color: #fff;
+    }
+
+    @media (max-width: 1199px) {
+        .course-detail-container {
+            margin-left: 0;
+        }
+    }
+
+    .detail-header {
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+    }
+
+    .detail-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #212529;
+    }
+
+    .info-box {
+        background-color: #f8f9fa;
+        border-left: 4px solid #0563bb;
+        padding: 20px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 30px;
+    }
+
+    .info-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .info-box li {
+        margin-bottom: 10px;
+        font-size: 0.95rem;
+    }
+
+    .info-box li strong {
+        color: #212529;
+    }
+
+    .certificate-section img {
+        max-width: 100%;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+</style>
+
+<main class="course-detail-container">
+    <div class="container-fluid p-0">
+        
+        <a href="{% url 'courses_list' %}" class="text-muted text-decoration-none small mb-4 d-inline-block">
+            &larr; Back to Courses
+        </a>
+
+        <div class="detail-header">
+            <h1 class="detail-title">{{ course.title }}</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="h5 font-weight-bold mb-3">About this Course</h3>
+                <div class="text-muted mb-5" style="line-height: 1.8;">
+                    {{ course.description|linebreaks|default:"No description provided." }}
+                </div>
+
+                {% if course.certificate_image %}
+                <div class="certificate-section mt-4">
+                    <h3 class="h5 font-weight-bold mb-3"><i class="bi bi-award"></i> Certificate of Completion</h3>
+                    <img src="{{ course.certificate_image.url }}" alt="Certificate for {{ course.title }}">
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-box">
+                    <h4 class="h6 font-weight-bold mb-3 text-uppercase text-muted">Course Meta</h4>
+                    <ul>
+                        <li><strong>Instructor:</strong> {{ course.coach.name }}</li>
+                        <li><strong>Platform/Source:</strong> {{ course.source.name }}</li>
+                        {% if course.skill %}
+                        <li><strong>Skill Field:</strong> {{ course.skill.name }}</li>
+                        {% endif %}
+                        <li><strong>Timeline:</strong> 
+                            {{ course.start_date|date:"M Y"|default:"N/A" }} - {{ course.end_date|date:"M Y"|default:"Present" }}
+                        </li>
+                    </ul>
+                    
+                    {% if course.url %}
+                    <a href="{{ course.url }}" target="_blank" class="btn btn-outline-primary btn-sm w-100 mt-3">
+                        <i class="bi bi-box-arrow-up-right"></i> View Original Course
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+{% endblock %}

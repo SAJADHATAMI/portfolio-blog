@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from blog.models import Post, Category, Tag
+from blog.models import Post, BlogCategory, Tag
 from django.db.models import Count
 
 
@@ -8,8 +8,8 @@ from django.db.models import Count
 
 
 def blog_list(request):
-    blogs = Post.objects.exclude(status=0).select_related('category').prefetch_related('tags')
-    categories = Category.objects.all()
+    blogs = Post.objects.exclude(status=0).select_related('blogCategory').prefetch_related('tags')
+    categories = BlogCategory.objects.all()
     tags = Tag.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
     category = request.GET.get('category')
     tag = request.GET.get('tag')
@@ -37,6 +37,6 @@ def blog_list(request):
 
 
 def blog_detail(request, slug):
-    post = get_object_or_404(Post.objects.select_related('category').prefetch_related('tags'), slug=slug)
+    post = get_object_or_404(Post.objects.select_related('blogCategory').prefetch_related('tags'), slug=slug)
     context = {'post': post}
     return render(request, 'blog/blog_detail.html', context)
