@@ -1,0 +1,179 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+<style>
+    .blog-detail-container {
+        margin-left: 300px;
+        padding: 60px 40px;
+        direction: ltr;
+        text-align: left;
+        background-color: #fff;
+    }
+
+    @media (max-width: 1199px) {
+        .blog-detail-container {
+            margin-left: 0;
+        }
+    }
+
+    /* Post Header */
+    .post-header {
+        margin-bottom: 30px;
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 20px;
+    }
+    .post-meta {
+        font-size: 0.9rem;
+        color: #6c757d;
+        display: flex;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+    .post-meta a {
+        color: #0563bb;
+        text-decoration: none;
+    }
+    .post-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+
+    /* Featured Image */
+    .post-featured-image {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* Post Content Style */
+    .post-body {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #495057;
+        margin-bottom: 40px;
+    }
+    
+    /* Sub-images / Gallery Section */
+    .post-gallery-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        color: #212529;
+    }
+    .gallery-card {
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    .gallery-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .gallery-caption {
+        padding: 10px;
+        font-size: 0.85rem;
+        color: #6c757d;
+        background: #f8f9fa;
+        border-top: 1px solid #e9ecef;
+    }
+
+    /* Tags inside Detail */
+    .post-tags {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #f8f9fa;
+    }
+    .post-tag-badge {
+        background-color: #f8f9fa;
+        color: #0563bb;
+        font-size: 0.85rem;
+        padding: 6px 12px;
+        border-radius: 4px;
+        margin-right: 8px;
+        display: inline-block;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+    .post-tag-badge:hover {
+        background-color: #eef2f7;
+    }
+
+    .btn-back {
+        color: #6c757d;
+        text-decoration: none;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 20px;
+    }
+    .btn-back:hover {
+        color: #0563bb;
+    }
+</style>
+
+<main class="blog-detail-container">
+    <div class="container-fluid p-0">
+        
+        <a href="{% url 'blog_list' %}" class="btn-back">
+            &larr; Back to Blog List
+        </a>
+
+        <header class="post-header">
+            <div class="post-meta">
+                <span><i class="bi bi-calendar3"></i> {{ post.created_at|date:"M d, Y" }}</span>
+                <span><i class="bi bi-folder"></i> <a href="{% url 'blog_list' %}?category={{ post.category.slug }}">{{ post.category.name }}</a></span>
+            </div>
+            <h1 class="post-title">{{ post.title }}</h1>
+        </header>
+
+        {% if post.cover_image %}
+            <img src="{{ post.cover_image.url }}" class="post-featured-image" alt="{{ post.title }}">
+        {% endif %}
+
+        <article class="post-body">
+            {{ post.content|linebreaks }}
+        </article>
+
+        {% if post.tags.all %}
+        <div class="post-tags">
+            <span class="text-muted small me-2">Tags:</span>
+            {% for t in post.tags.all %}
+                <a href="{% url 'blog_list' %}?tag={{ t.slug }}" class="post-tag-badge">#{{ t.name }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if post.images.all %}
+        <section class="post-gallery">
+            <h3 class="post-gallery-title">Article Gallery & Figures</h3>
+            <div class="row">
+                {% for img_obj in post.images.all %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="gallery-card">
+                        <img src="{{ img_obj.image.url }}" alt="{{ img_obj.caption|default:post.title }}">
+                        {% if img_obj.caption %}
+                            <div class="gallery-caption">{{ img_obj.caption }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+    </div>
+</main>
+{% endblock %}

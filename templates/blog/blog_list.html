@@ -1,0 +1,234 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %} Blog {% endblock %}
+
+{% block content %}
+<style>
+    .blog-container {
+        margin-left: 300px;
+        padding: 60px 40px;
+        direction: ltr;
+        text-align: left;
+        background-color: #fff;
+    }
+
+    @media (max-width: 1199px) {
+        .blog-container {
+            margin-left: 0;
+        }
+    }
+
+    /* Breadcrumb & Title Style */
+    .archive-header {
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 15px;
+        margin-bottom: 40px;
+    }
+
+    .breadcrumb-custom {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+
+    .breadcrumb-custom a {
+        color: #0563bb;
+        text-decoration: none;
+    }
+
+    .archive-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #212529;
+        margin: 0;
+    }
+
+    /* Filters Style */
+    .filter-select-group .btn-dropdown {
+        background: transparent;
+        border: none;
+        color: #495057;
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+
+    .filter-select-group .btn-dropdown:focus {
+        box-shadow: none;
+    }
+
+    .filter-select-group .dropdown-menu {
+        font-size: 0.85rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e9ecef;
+    }
+
+    .filter-select-group .dropdown-item.active {
+        background-color: #f8f9fa;
+        color: #0563bb;
+        font-weight: 600;
+    }
+
+    /* Minimalist Card Style */
+    .blog-card {
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .blog-card img {
+        height: 250px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .blog-card-body {
+        padding: 20px;
+    }
+
+    .blog-card-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 5px;
+    }
+
+    .blog-card-category {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 15px;
+    }
+
+    .tag-badge {
+        background-color: #f8f9fa;
+        color: #6c757d;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        margin-right: 5px;
+        display: inline-block;
+    }
+
+    /* Card Footer Links */
+    .blog-card-footer {
+        padding: 15px 20px;
+        background: transparent;
+        border-top: 1px solid #f8f9fa;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-view-details {
+        color: #0563bb;
+        font-size: 0.85rem;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .btn-view-details:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<main class="blog-container">
+    <div class="container-fluid p-0">
+
+        <div class="archive-header d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
+            <div>
+                <div class="breadcrumb-custom">
+                    <a href="/">Home</a> / <span>Blog</span>
+                </div>
+                <h1 class="archive-title">Blog</h1>
+            </div>
+
+            <div class="d-flex gap-2 filter-select-group">
+
+                <div class="dropdown">
+                    <button class="btn btn-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        {% if not category %}All Categories{% else %}{% for cat in categories %}{% if category == cat.slug %}{{ cat.name }}{% endif %}{% endfor %}{% endif %}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item {% if not category %}active{% endif %}" href="?{% if tag %}tag={{ tag }}{% endif %}{% if sort %}&sort={{ sort }}{% endif %}">All Categories</a></li>
+                        {% for cat in categories %}
+                        <li><a class="dropdown-item {% if category == cat.slug %}active{% endif %}" href="?category={{ cat.slug }}{% if tag %}&tag={{ tag }}{% endif %}{% if sort %}&sort={{ sort }}{% endif %}">{{ cat.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        {% if sort == 'oldest' %}Oldest First{% elif sort == 'title' %}Alphabetical{% else %}Newest First{% endif %}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item {% if sort == 'newest' or not sort %}active{% endif %}" href="?sort=newest{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">Newest First</a></li>
+                        <li><a class="dropdown-item {% if sort == 'oldest' %}active{% endif %}" href="?sort=oldest{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">Oldest First</a></li>
+                        <li><a class="dropdown-item {% if sort == 'title' %}active{% endif %}" href="?sort=title{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">Alphabetical</a></li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        {% if not tag %}All Tags{% else %}{% for t in tags %}{% if tag == t.slug %}#{{ t.name }}{% endif %}{% endfor %}{% endif %}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item {% if not tag %}active{% endif %}" href="?{% if category %}category={{ category }}{% endif %}{% if sort %}&sort={{ sort }}{% endif %}">All Tags</a></li>
+                        {% for t in tags %}
+                        <li><a class="dropdown-item {% if tag == t.slug %}active{% endif %}" href="?tag={{ t.slug }}{% if category %}category={{ category }}{% endif %}{% if sort %}&sort={{ sort }}{% endif %}">#{{ t.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            {% for blog in blogs %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="blog-card">
+                    {% if blog.cover_image %}
+                    <img src="{{ blog.cover_image.url }}" alt="{{ blog.title }}">
+                    {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 250px; color: #adb5bd;">
+                        No Image
+                    </div>
+                    {% endif %}
+
+                    <div class="blog-card-body">
+                        <h2 class="blog-card-title">{{ blog.title }}</h2>
+                        <div class="blog-card-category">{{ blog.category.name }}</div>
+
+                        <p class="text-muted small mt-2 mb-3" style="min-height: 44px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                            {{ blog.short_description|truncatechars:150 }}
+                        </p>
+
+                        <div class="mt-2">
+                            {% for t in blog.tags.all %}
+                            <span class="tag-badge">{{ t.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="blog-card-footer">
+                        <span class="text-muted small"><i class="bi bi-calendar3"></i> {{ blog.created_at|date:"M d, Y" }}</span>
+                        <a href="{% url 'blog_detail' blog.slug %}" class="btn-view-details">View Details &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-5">No blog posts found matching the criteria.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</main>
+{% endblock %}

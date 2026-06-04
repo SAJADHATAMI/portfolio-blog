@@ -6,7 +6,7 @@ from django.utils.text import slugify
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True, null=True)
     created_at = models.DateField(auto_now_add=True)
     def __str__(self):
         return self.name
@@ -26,7 +26,7 @@ STATUS_CHOICES = [
 
 class Project(models.Model):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True, null=True)
     skills = models.ManyToManyField(Skill)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     short_description = models.TextField(blank=True)
