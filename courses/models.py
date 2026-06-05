@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 
 from core.models import Skill
@@ -47,3 +48,6 @@ class Course(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('course_detail', kwargs={'slug': self.slug})

@@ -553,7 +553,7 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>Contact</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            <p>Ready to build something amazing? Reach out for projects, collaborations, or just a chat.</p>
         </div><!-- End Section Title -->
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -567,69 +567,99 @@
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
                                 <h3>Address</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                                <p>Nasimshahr, Tehran, IRAN</p>
                             </div>
                         </div><!-- End Info Item -->
 
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                             <i class="bi bi-telephone flex-shrink-0"></i>
                             <div>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55</p>
+                                <h3>Call Me</h3>
+                                <p>+98 999 104 8019</p>
                             </div>
                         </div><!-- End Info Item -->
 
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
-                                <h3>Email Us</h3>
-                                <p>info@example.com</p>
+                                <h3>Email Me</h3>
+                                <p>sajadhatamiw@gmail.com</p>
                             </div>
                         </div><!-- End Info Item -->
 
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"
-                                frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen=""
-                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
 
                 <div class="col-lg-7">
-                    <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+                    <form action="{% url 'home' %}" method="post" class="row gy-4" data-aos="fade-up"
                           data-aos-delay="200">
+                        {% csrf_token %}
+
                         <div class="row gy-4">
 
                             <div class="col-md-6">
-                                <label for="name-field" class="pb-2">Your Name</label>
-                                <input type="text" name="name" id="name-field" class="form-control" required="">
+                                <label for="{{ form.name.id_for_label }}" class="pb-2">Your Name</label>
+                                <input type="text" name="name" id="{{ form.name.id_for_label }}" class="form-control"
+                                       value="{{ form.name.value|default_if_none:'' }}" required>
+                                {% if form.name.errors %}
+                                <div class="text-danger small">{{ form.name.errors }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-6">
-                                <label for="email-field" class="pb-2">Your Email</label>
-                                <input type="email" class="form-control" name="email" id="email-field" required="">
+                                <label for="{{ form.email.id_for_label }}" class="pb-2">Your Email</label>
+                                <input type="email" name="email" id="{{ form.email.id_for_label }}" class="form-control"
+                                       value="{{ form.email.value|default_if_none:'' }}" required>
+                                {% if form.email.errors %}
+                                <div class="text-danger small">{{ form.email.errors }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-12">
-                                <label for="subject-field" class="pb-2">Subject</label>
-                                <input type="text" class="form-control" name="subject" id="subject-field" required="">
+                                <label for="{{ form.subject.id_for_label }}" class="pb-2">Subject</label>
+                                <input type="text" name="subject" id="{{ form.subject.id_for_label }}"
+                                       class="form-control" value="{{ form.subject.value|default_if_none:'' }}"
+                                       required>
+                                {% if form.subject.errors %}
+                                <div class="text-danger small">{{ form.subject.errors }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-12">
-                                <label for="message-field" class="pb-2">Message</label>
-                                <textarea class="form-control" name="message" rows="10" id="message-field"
-                                          required=""></textarea>
+                                <label for="{{ form.message.id_for_label }}" class="pb-2">Message</label>
+                                <textarea name="message" id="{{ form.message.id_for_label }}" class="form-control"
+                                          rows="10" required>{{ form.message.value|default_if_none:'' }}</textarea>
+                                {% if form.message.errors %}
+                                <div class="text-danger small">{{ form.message.errors }}</div>
+                                {% endif %}
                             </div>
+
+                            {% if messages %}
+                            <div class="col-md-12">
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
 
                             <div class="col-md-12 text-center">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
+                                {% if form.non_field_errors %}
+                                <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                                {% endif %}
 
-                                <button type="submit">Send Message</button>
+                                <button type="submit"
+                                        style="background-color: #28a745; color: #ffffff; border: none; padding: 12px 30px; font-size: 16px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                                    Send Message
+                                </button>
                             </div>
 
                         </div>
                     </form>
-                </div><!-- End Contact Form -->
+                </div>
 
             </div>
 
