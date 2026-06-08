@@ -6,7 +6,22 @@ import sys
 
 def main():
     """Run administrative tasks."""
+
+    # Development / Local (default)
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.setting.dev')
+
+    # Production (server)
+    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.setting.prod')
+
+
+    # Handle MySQL driver if needed
+    try:
+        import pymysql
+        pymysql.install_as_MySQLdb()
+    except ImportError:
+        pass
+
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -15,8 +30,11 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+
     execute_from_command_line(sys.argv)
 
 
 if __name__ == '__main__':
     main()
+

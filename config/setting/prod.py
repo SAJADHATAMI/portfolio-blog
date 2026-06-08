@@ -1,11 +1,20 @@
-#  تنظیمات مشترک
-from pathlib import Path
 import os
+from pathlib import Path
+import pymysql
 
-# با توجه به اینکه فایل یک پوشه عقب‌تر رفته، دو بار parent می‌گیریم تا به ریشه پروژه برسیم
+# حل مشکل MySQL در هاست‌های اشتراکی
+pymysql.version_info = (1, 4, 6, 'final', 0)
+pymysql.install_as_MySQLdb()
+
+# مسیر اصلی پروژه: /home/lsaxuxzc/portfolio
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# برنامه های نصب شده
+# امنیت
+SECRET_KEY = 'django-secure-sajad-hatami-2026-key-replace-this'
+DEBUG = False # حتما False باشد
+ALLOWED_HOSTS = ['sajadhatami.ir', 'www.sajadhatami.ir']
+
+# اپلیکیشن‌ها
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -15,7 +24,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
-    # my apps
     'blog',
     'contact',
     'core',
@@ -55,67 +63,46 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-]
-
-# محلی‌سازی و زمان
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'Asia/Tehran'  # تنظیم شده روی ساعت ایران
-USE_I18N = True
-USE_TZ = True
-
-# تنظیمات استاتیک و مدیا مشترک
-STATIC_URL = '/static/'
-
-MEDIA_URL = '/media/'
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-
-
-
-
-
-
-
-
-
-# تنظیمات اختصاصی
-# ⚠️ کلید اصلی و امنیتی سرور (این را بعداً عوض کن یا از env بخوان)
-SECRET_KEY = 'django-secure-production-key-change-this-sajad-hatami'
-
-# در محیط پروداکشن حتماً باید False باشد تا خطاهای بک‌اند لو نرود
-DEBUG = False
-
-# تنظیم دقیق دامنه‌ها برای جلوگیری از حملات Host Header
-ALLOWED_HOSTS = ['sajadhatami.ir', 'www.sajadhatami.ir']
-
-# دیتابیس پروداکشن (هاست‌های سی‌پنل معمولاً از MySQL استفاده می‌کنند)
-# اگر می‌خواهی روی هاست هم فعلاً از همان sqlite استفاده کنی، این بخش را دست نزن
+# دیتابیس MySQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lsaxuxzc_portfolio_db',
+        'USER': 'lsaxuxzc_sajad',
+        'PASSWORD': 'pD%R)U0@y}tI%%A&',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
-# 🔒 تنظیمات سخت‌گیرانه امنیتی پروداکشن (Security Checklist)
+# محلی‌سازی
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Asia/Tehran'
+USE_I18N = True
+USE_TZ = True
+
+# تنظیمات استاتیک (علت اصلی مشکل لود نشدن ظاهر سایت)
+# تنظیمات استاتیک
+STATIC_URL = '/static/'
+
+# مسیر دقیق روی سرور برای جمع‌آوری فایل‌ها
+STATIC_ROOT = '/home/lsaxuxzc/portfolio/staticfiles'
+
+# مسیری که فایل‌های استاتیک خام پروژه تو در آن قرار دارد
+STATICFILES_DIRS = [
+    '/home/lsaxuxzc/portfolio/static',
+]
+
+# تنظیمات مدیا
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/lsaxuxzc/portfolio/media'
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# امنیت بیشتر (Security Checklist)
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
-
-# اگر هاست شما SSL فعال دارد (https)، این دو خط را فعال کنید تا کوکی‌ها امن شوند
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-
-
-
-# تنظیمات استاتیک و مدیا در پروداکشن
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_ROOT = BASE_DIR / 'media'
